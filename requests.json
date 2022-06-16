@@ -1,0 +1,20 @@
+[
+    {
+	"scheme": "https",
+	"host": "isc.sans.edu",
+	"url": "/index.html",
+	"method": "GET",
+	"comment": "This is a GET Test"
+    },
+    {
+	"scheme": "https",
+	"host": "isc.sans.edu",
+	"url": "/index.html",
+	"method": "POST",
+	"comment": "This is a POST test",
+	"body": "x=1&y=2",
+	"headers": {
+	    "content-type": "form/urlencoded"
+	}
+    }
+]
