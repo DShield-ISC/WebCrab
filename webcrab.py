@@ -38,10 +38,11 @@ def sendrequest(r):
     if 'body' not in 'r':
         r['body']=''
     if 'port' in 'r':        
-        url = r['method'],r['scheme']+'://'+r['host']+':'+r['port']+r['url']
+        url = r['scheme']+'://'+r['host']+':'+r['port']+r['url']
     else:
-        url = r['method'],r['scheme']+'://'+r['host']+r['url']        
-    response = requests.request(url, headers=r['headers'], data=r['body'])
+        url = r['scheme']+'://'+r['host']+r['url']
+    print(f"Requesting {url}")
+    response = requests.request(r['method'],url, headers=r['headers'], data=r['body'])
     return(response)
 
 if __name__ == '__main__':
