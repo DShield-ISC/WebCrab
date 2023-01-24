@@ -33,11 +33,11 @@ def sendrequest(r):
             print(f"Missing required parameter {x} in request. \n\n{r}")
             sys.exit()
 
-    if 'headers' not in 'r':
+    if 'headers' not in r:
         r['headers']={}
-    if 'body' not in 'r':
+    if 'body' not in r:
         r['body']=''
-    if 'port' in 'r':        
+    if 'port' in r:        
         url = r['scheme']+'://'+r['host']+':'+r['port']+r['url']
     else:
         url = r['scheme']+'://'+r['host']+r['url']
