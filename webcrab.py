@@ -51,21 +51,24 @@ if __name__ == '__main__':
         sys.exit()
     requestfile = sys.argv[1]
     resultfile = sys.argv[2] + "." + str(int(time.time()))
+    data = None
     try:
-        f = open(requestfile)
+        with open(requestfile) as f:
+            data = json.load(f)
     except FileNotFoundError:
         print(f"Can not find {requestfile}")
         sys.exit()
-    try:
-        data = json.load(f)
     except json.decoder.JSONDecodeError:
         print(f"Error parsing '{requestfile}'")
         sys.exit()
-    f.close()
-    f = open(resultfile,'a')    
-    for r in data:
-        response = sendrequest(r)
-        f.write(jsonfy(response,r['comment']))
-    f.close()
+    except Exception as e:
+        print(f"Uncaught exception: {e}. Please open an issue at https://github.com/DShield-ISC/WebCrab/issues.")
+    if not data:
+        print(f"No data found in {requestfile}.")
+        sys.exit()
+    with open(resultfile,'a') as f:
+        for r in data:
+            response = sendrequest(r)
+            f.write(jsonfy(response,r['comment']))
         
     
